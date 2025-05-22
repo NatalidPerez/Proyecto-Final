@@ -46,5 +46,34 @@ class  Juego Batalla Naval
            messagebox.showinfo("Listo","¡Todas las unidades han sido colocadas!")
    self.actualizar_tabler()
 else:
-        messagebox.showwarning("Ocupado"," esa celda ya tiene una unidad.")
+        messagebox.showwarning(Ocupado"," esa celda ya tiene una unidad.")
+  elif not self.colocando_unidades:
+    self.atac_celda(fila, columna)
+def atacar_celda(self, fila, columna):
+  jugador actual=self.jugadores[self.turno]
+jugador_enemigo=self.jugadores[(self.turno+1)%2]
+     
+unidad=self.tablero[fila][columna]
+if unidad and unidad.jugador!=jugador_actual:
+   destruida=unidad.recibir_daño(1)
+mensaje=f"¡Impacto! Has dañado una unidad enemiga."
+if destruida:
+  mensaje +="¡Unidad destruid!"
+  self.tablero[fila][columna]=none
+  jugador enemigo.unidades.remove(unidad)
+else:
+ mensaje="¡Agua!"
+massagebox.showinfo(Resultado del ataque",mensaje)
+
+if selv.verificar_victoria():
+  ganador=juagdor_actual.nombre
+  self.actualizar_tablero()
+messagebox.showinfo("FIN DEL JUEGO", f"{ganador}{ha ganado la partida.")
+self.root.quit()
+  return
+
+self.turno=(self.turno+1)%2
+self.actualizar_tablero()
+
+
 
