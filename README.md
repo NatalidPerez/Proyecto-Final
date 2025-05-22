@@ -7,5 +7,13 @@ class unidad
      self.hp
      self. jugador
      self. posicion 
+     posicion 
+--def recibir_dano(self, cantidad)
+--self.hp -= cantidad 
+--return self.hp < = 0
+class jugador :
+-- def__init__(self, nombre):
+------self.nombre = nombre
+------self.unidaddes = []
 
 
