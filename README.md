@@ -15,5 +15,15 @@ class jugador :
 -- def__init__(self, nombre):
 ------self.nombre = nombre
 ------self.unidaddes = []
+class  Juego Batalla Naval
+--def__init__(self,root) :
+-----self.root = root
+-----self.filas = 5
+-----self. columnas=5 
+-----self.tablero =[[ none for in range(self.columnas)] for in range(self.filas)]
+--self.jugador1 = Jugador("Jugador 1")
+--self.jugador2 = Jugador("Jugador 2")
+--self.jugadores = [self.jugador1, self.jugador2] 
+--self.turno = 0
 
 
