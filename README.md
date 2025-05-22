@@ -25,5 +25,7 @@ class  Juego Batalla Naval
 --self.jugador2 = Jugador("Jugador 2")
 --self.jugadores = [self.jugador1, self.jugador2] 
 --self.turno = 0
-
+--self.colocando_unidades = False.          --self.unidades_a_colocar =[]               --self.jugador_colocando = None
+--self.crear_unidades_iniciales()
+--self.crear_gui()
 
