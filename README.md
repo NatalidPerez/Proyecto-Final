@@ -29,3 +29,22 @@ class  Juego Batalla Naval
 --self.crear_unidades_iniciales()
 --self.crear_gui()
 
+
+
+(Segunda parte del Código)
+
+
+
+ if not self.unidades_a_colocar:
+    if self.jugador_colocando==self.jugador1:
+        self.jugador_colocando=self.jugador2
+        self.unidades_a_colocar=[Unidad(f"U2-{i+1}",2,self.jugador2) for i in range(3)] 
+           messagebox.showinfo("TURNO"."Ahora coloca las unidades del jugador 2.")
+   else:
+       self.colocando_unidades= False
+       self.turno=0
+           messagebox.showinfo("Listo","¡Todas las unidades han sido colocadas!")
+   self.actualizar_tabler()
+else:
+        messagebox.showwarning("Ocupado"," esa celda ya tiene una unidad.")
+
