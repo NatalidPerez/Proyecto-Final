@@ -1,78 +1,118 @@
 # Proyecto-Final 
 import tkinter as tk
 from tkinter as import messagebox
+
 class unidad:
-     def__int( self,nombre ,hp, jugador):
+  def __int__( self,nombre ,hp, jugador):
      self.nombre = nombre 
      self.hp = hp
      self. jugador = jugador
-     self. posicion = posicion 
---def recibir_dano(self, cantidad):
---self.hp -= cantidad 
---return self.hp < = 0
-class jugador :
--- def__init__(self, nombre):
-------self.nombre = nombre
-------self.unidaddes = []
-class  Juego Batalla Naval:
---def__init__(self,root) :
------self.root = root
------self.filas = 5
------self. columnas=5 
------self.tablero =[[ none for in range(self.columnas)] for in range(self.filas)]
---self.jugador1 = Jugador("Jugador 1")
---self.jugador2 = Jugador("Jugador 2")
---self.jugadores = [self.jugador1, self.jugador2] 
---self.turno = 0
---self.colocando_unidades = False.          --self.unidades_a_colocar =[]               --self.jugador_colocando = None
---self.crear_unidades_iniciales()
---self.crear_gui()
-
-
-
-(Segunda parte del Código)
-
-
-
- if not self.unidades_a_colocar:
-    if self.jugador_colocando==self.jugador1:
-        self.jugador_colocando=self.jugador2
-        self.unidades_a_colocar=[Unidad(f"U2-{i+1}",2,self.jugador2) for i in range(3)] 
-           messagebox.showinfo("TURNO"."Ahora coloca las unidades del jugador 2.")
-   else:
-       self.colocando_unidades= False
-       self.turno=0
-           messagebox.showinfo("Listo","¡Todas las unidades han sido colocadas!")
-   self.actualizar_tabler()
-else:
-        messagebox.showwarning(Ocupado"," esa celda ya tiene una unidad.")
-  elif not self.colocando_unidades:
-    self.atac_celda(fila, columna)
-def atacar_celda(self, fila, columna):
-  jugador actual=self.jugadores[self.turno]
-jugador_enemigo=self.jugadores[(self.turno+1)%2]
+     self. posicion = None 
+  def recibir_dano(self, cantidad):
+     self.hp -= cantidad 
+     return self.hp <= 0
      
-unidad=self.tablero[fila][columna]
-if unidad and unidad.jugador!=jugador_actual:
-   destruida=unidad.recibir_daño(1)
-mensaje=f"¡Impacto! Has dañado una unidad enemiga."
-if destruida:
-  mensaje +="¡Unidad destruid!"
-  self.tablero[fila][columna]=none
-  jugador enemigo.unidades.remove(unidad)
-else:
- mensaje="¡Agua!"
-massagebox.showinfo(Resultado del ataque",mensaje)
+class jugador :
+   def __init__(self, nombre):
+      self.nombre = nombre
+      self.unidaddes = []
+      
+class  Juego Batalla Naval:
+  def__init__(self,root) :
+     self.root = root
+     self.filas = 5
+     self.columnas = 5 
+     self.tablero =[[ None for _ in range(self.columnas)] for _ in range(self.filas)]
+     self.jugador1 = Jugador("Jugador 1")
+     self.jugador2 = Jugador("Jugador 2")
+     self.jugadores = [self.jugador1, self.jugador2] 
+     self.turno = 0
+     self.colocando_unidades = False.          
+     self.unidades_a_colocar =[]               
+     self.jugador_colocando = None
+     self.crear_unidades_iniciales()
+     self.crear_gui()
 
-if selv.verificar_victoria():
-  ganador=juagdor_actual.nombre
-  self.actualizar_tablero()
-messagebox.showinfo("FIN DEL JUEGO", f"{ganador}{ha ganado la partida.")
-self.root.quit()
-  return
+  def crear_unidades_iniciales(self):
+       for i in range(3):
+           u = Unidad(f"U1-{i+1}", 2, self.jugador1)
+           u.posicion = (0, i)
+           self.jugador1.unidades.append(u)
+           self.tablero[0][i] = u
 
-self.turno=(self.turno+1)%2
-self.actualizar_tablero()
+      for i in range(3):
+          u = Unidad(f"U2-{i+1}", 2, self.jugador2)
+          u.posicion = (4, i+2)
+          self.jugador2.unidades.append(u)
+          self.tablero[4][i+2] = u
+
+  def crear_gui(self):
+       self.info_label = tk.label(self.root, text="", font=("Arial", 14))
+       self.info_label.pack(pady=10)
+       self.tablero_frame = tk.frame(self.root)
+       self.tablero_frame.pack()
+       self.botones = []
+       for i in range(self.filas):
+            fila_botones = []
+            for j in range(self.columnas):
+                 btn = tk.button(self.tablero_frame, width=6, height=3, command=lambda x=i, y=j: self.clic_en_celda(x, y))
+                 btn.grid(row=i, column=j)
+                 fila_botones.append(btn)
+            self.botones.append(fila_botones)     
+            self.boton_reubicar = tk.button(self.root, text="Reubicar Unidades", command=self.reubicar_manual)
+            self.boton_reubicar.pack(pady=10)
+            self.actualizar_tablero()
+
+  def clic_en celda(self, fila, columna):
+       if self.colocando_unidades and self.unidades_a_colocar:
+           if self.tablero[fila][columna] in None:
+                unidad = self.unidades_a_colocar.pop(0)
+                unidad.posiciom = (fila, columna)
+                self.tablero[fila][columna] = unidad
+                self.jugador_colocando.unidades.append(unidad)
+                self.actualizar_tablero()
+
+                if not self.unidades_a_colocar:
+                    if self.jugador_colocando==self.jugador1:
+                        self.jugador_colocando=self.jugador2
+                        self.unidades_a_colocar=[Unidad(f"U2-{i+1}",2,self.jugador2) for i in range(3)] 
+                        messagebox.showinfo("TURNO"."Ahora coloca las unidades del jugador 2.")
+                     else:
+                        self.colocando_unidades= False
+                        self.turno=0
+                        messagebox.showinfo("Listo","¡Todas las unidades han sido colocadas!")
+                        self.actualizar_tabler()
+          else:
+             messagebox.showwarning(Ocupado"," esa celda ya tiene una unidad.")
+    elif not self.colocando_unidades:
+        self.atac_celda(fila, columna)
+       
+  def atacar_celda(self, fila, columna):
+      jugador actual=self.jugadores[self.turno]
+      jugador_enemigo=self.jugadores[(self.turno+1)%2]
+     
+     unidad = self.tablero[fila][columna]
+     if unidad and unidad.jugador!=jugador_actual:
+        destruida=unidad.recibir_daño(1)
+        mensaje=f"¡Impacto! Has dañado una unidad enemiga."
+        if destruida:
+            mensaje +="¡Unidad destruid!"
+            self.tablero[fila][columna]=none
+            jugador enemigo.unidades.remove(unidad)
+     else:
+        mensaje="¡Agua!"
+        
+     massagebox.showinfo(Resultado del ataque",mensaje)
+
+     if selv.verificar_victoria():
+         ganador=juagdor_actual.nombre
+         self.actualizar_tablero()
+         messagebox.showinfo("FIN DEL JUEGO", f"{ganador}{ha ganado la partida.")
+         self.root.quit()
+         return
+
+     self.turno=(self.turno+1)%2
+     self.actualizar_tablero()
 
 #Como se ve el tablero y la ubicacion de los barcos por defecto
 def actualizar_tablero(self):
